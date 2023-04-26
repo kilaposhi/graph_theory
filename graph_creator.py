@@ -87,7 +87,7 @@ def draw_bipartite_graph(bipartite_graph : bipartite, title = None):
     return nx.draw_networkx(bipartite_graph, pos=nx.bipartite_layout(bipartite_graph,top_nodes), **options)
 
 
-
+#TODO Créer la fonction qui permet de dessiner un couplage sur un graph
 def draw_matching_graph(bipartite_graph:bipartite, matching_list :dict, title:str= None):
     options = {
         'node_color': 'red',
