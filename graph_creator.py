@@ -19,6 +19,7 @@ def create_random_vertices(num_vertices):
             equals = False
     return vertex1, vertex2
 
+
 def create_base_graph(num_vertices, num_edges):
     max_edges = ((num_vertices-1)*num_vertices)/2 # Max edges of a Directed Acyclic Graph (DAG)
     if num_edges > max_edges:
@@ -48,16 +49,19 @@ def create_acyclic_DiGraph(num_vertices, num_edges):
         graph.add_edge(vertex1, vertex2)
     return graph
 
-def draw_graph(graph : nx.Graph):
+
+def draw_graph(graph : nx.DiGraph, title=None):
     options = {
         'node_color': 'red',
         'node_size': 200,
-        'with_labels' : True,
+        'with_labels': True,
         'width': 3,
     }
-    return nx.draw_networkx(graph, pos=nx.spring_layout(graph), **options)
+    plt.title(title)
+    return nx.draw_networkx(graph, pos=nx.spring_layout(graph, seed=100), **options)
 
-def draw_grey_graph(graph : nx.Graph):
+
+def draw_grey_graph(graph:nx.DiGraph, title=None):
     options = {
         'node_color': 'grey',
         'node_size': 200,
@@ -67,10 +71,11 @@ def draw_grey_graph(graph : nx.Graph):
         'edge_color': 'grey',
         'arrowsize': 20
     }
-    return nx.draw_networkx(graph, **options)
+    plt.title(title)
+    return nx.draw_networkx(graph, pos=nx.spring_layout(graph, seed = 100), **options)
 
 
 graph = create_acyclic_DiGraph(4, 6)
-draw_graph(graph)
+draw_graph(graph, title="test")
 plt.show()
 #%%
