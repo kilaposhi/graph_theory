@@ -102,6 +102,6 @@ def draw_matching_graph(bipartite_graph:bipartite, matching_list :dict, title:st
     return nx.draw_networkx(bipartite_graph, pos=nx.bipartite_layout(bipartite_graph,top_nodes), **options)
 
 
-graph = create_acyclic_DiGraph(4, 6)
-draw_graph(graph, title="test")
-plt.show()
+# graph = create_acyclic_DiGraph(4, 6)
+# draw_graph(graph, title="test")
+# plt.show()
