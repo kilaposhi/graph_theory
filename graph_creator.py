@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import networkx as nx
+from networkx.algorithms import bipartite
 import numpy as np
 import random
 
@@ -72,10 +73,35 @@ def draw_grey_graph(graph:nx.DiGraph, title=None):
         'arrowsize': 20
     }
     plt.title(title)
-    return nx.draw_networkx(graph, pos=nx.spring_layout(graph, seed = 100), **options)
+    return nx.draw_networkx(graph, pos=nx.spring_layout(graph, seed=100), **options)
+
+def draw_bipartite_graph(bipartite_graph : bipartite, title = None):
+    options = {
+        'node_color': 'red',
+        'node_size': 200,
+        'with_labels': True,
+        'width': 3
+    }
+    plt.title(title)
+    bottom_nodes, top_nodes = bipartite.sets(bipartite_graph)
+    return nx.draw_networkx(bipartite_graph, pos=nx.bipartite_layout(bipartite_graph,top_nodes), **options)
 
 
-graph = create_acyclic_DiGraph(4, 6)
-draw_graph(graph, title="test")
-plt.show()
-#%%
+#TODO Créer la fonction qui permet de dessiner un couplage sur un graph
+def draw_matching_graph(bipartite_graph:bipartite, matching_list :dict, title:str= None):
+    options = {
+        'node_color': 'red',
+        'node_size': 200,
+        'with_labels': True,
+        'width': 3,
+
+    }
+    plt.title(title)
+    bottom_nodes, top_nodes = bipartite.sets(bipartite_graph)
+    nx.draw_networkx(bipartite_graph, pos=nx.bipartite_layout(bipartite_graph,top_nodes), **options)
+    return nx.draw_networkx(bipartite_graph, pos=nx.bipartite_layout(bipartite_graph,top_nodes), **options)
+
+
+# graph = create_acyclic_DiGraph(4, 6)
+# draw_graph(graph, title="test")
+# plt.show()
